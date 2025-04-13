@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción a Godot Engine</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div id="presentation">
+        <!-- Índice -->
+        <section id="index" class="active">
+            <div class="index-container">
+                <h1>Introducción a Godot Engine y Personalización de Juegos 🎮</h1>
+                <img src="images/logo_large_color_light.png" alt="Logo de Godot Engine" class="logo">
+                <ul class="index-list">
+                    <li><a href="#" onclick="showSlide('slide1'); return false;">1. Introducción</a></li>
+                    <li><a href="#" onclick="showSlide('slide2'); return false;">2. Conceptos Clave en Godot</a></li>
+                    <li><a href="#" onclick="showSlide('slide3'); return false;">3. Demo: Obtener un Demo</a></li>
+                    <li><a href="#" onclick="showSlide('slide4'); return false;">4. Demo: Estructura del Proyecto</a>
+                    </li>
+                    <li><a href="#" onclick="showSlide('slide5'); return false;">5. Demo: Modificar la Vida del
+                            Personaje</a></li>
+                    <li><a href="#" onclick="showSlide('slide6'); return false;">6. Demo: Sistema de Disparos</a></li>
+                    <li><a href="#" onclick="showSlide('slide7'); return false;">7. Demo: Interfaz de Usuario</a></li>
+                    <li><a href="#" onclick="showSlide('slide8'); return false;">8. Demo: Prueba del Juego</a></li>
+                    <li><a href="#" onclick="showSlide('slide9'); return false;">9. Conclusión y Recursos</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slides individuales -->
+        <section id="slide1" class="slide">
+            <div class="slide-content">
+                <h1>¡Bienvenidos a Godot Engine! 🚀</h1>
+                <div class="slide-main">
+                    <div class="slide-text">
+                        <h2>¿Qué es Godot?</h2>
+                        <ul>
+                            <li>Motor de juegos <strong>completamente gratuito y de código abierto</strong> 💯</li>
+                            <li>Licencia MIT (libertad total para proyectos comerciales) 📄</li>
+                            <li>Multiplataforma: Windows, macOS, Linux, Web, móviles y consolas 🖥️ 📱</li>
+                            <li>Actual versión estable: Godot 4.2</li>
+                            <li>Soporta 2D y 3D con el mismo motor</li>
+                        </ul>
+
+                        <h2>¿Por qué Godot? 🤔</h2>
+                        <ul>
+                            <li>Peso ligero (~70MB la descarga completa) 🪶</li>
+                            <li>Editor intuitivo y potente 🛠️</li>
+                            <li>Lenguaje GDScript fácil de aprender (similar a Python) 🐍</li>
+                            <li>No hay royalties ni costos ocultos 💸</li>
+                            <li>Comunidad creciente y colaborativa 👨‍👩‍👧‍👦</li>
+                        </ul>
+                    </div>
+                    <div class="slide-image">
+                        <img src="images/editor.png" alt="Interfaz de Godot Engine">
+                    </div>
+                </div>
+            </div>
+            <div class="controls">
+                <button class="home-btn" onclick="showSlide('index')"><i class="fas fa-home"></i></button>
+                <button class="prev-btn" onclick="prevSlide()"><i class="fas fa-arrow-left"></i></button>
+                <button class="next-btn" onclick="nextSlide()"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="slide2" class="slide">
+            <div class="slide-content">
+                <h1>Conceptos Fundamentales de Godot 🧩</h1>
+                <div class="slide-main">
+                    <div class="slide-text">
+                        <h2>Sistema de Nodos 🌳</h2>
+                        <ul>
+                            <li>Todo en Godot es un <strong>Nodo</strong></li>
+                            <li>Los nodos se organizan en <strong>Árboles de Escena</strong></li>
+                            <li>Cada nodo tiene funciones y propiedades específicas</li>
+                        </ul>
+
+                        <h2>Tipos de Nodos Comunes</h2>
+                        <ul>
+                            <li><strong>Node2D</strong>: Base para elementos 2D</li>
+                            <li><strong>Sprite</strong>: Muestra imágenes</li>
+                            <li><strong>KinematicBody2D</strong>: Personajes con física</li>
+                            <li><strong>Area2D</strong>: Detección de colisiones</li>
+                            <li><strong>Camera2D</strong>: Vista del jugador</li>
+                        </ul>
+
+                        <h2>El Sistema de Señales 📡</h2>
+                        <ul>
+                            <li>Similar al patrón Observer o eventos</li>
+                            <li>Los nodos emiten señales cuando ocurren eventos</li>
+                            <li>Otros nodos pueden conectarse y reaccionar</li>
+                            <li>Facilita la comunicación entre componentes</li>
+                        </ul>
+                    </div>
+                    <div class="slide-image">
+                        <img src="images/scene_tree.png" alt="Árbol de escena de Godot">
+                    </div>
+                </div>
+                <!-- <div class="code-box">
+                    <h3>GDScript - Ejemplo básico:</h3>
+                    <pre><code>func _ready():
+    # Se ejecuta cuando el nodo entra en escena
+    print("¡Hola Godot!")
+
+func _process(delta):
+    # Se ejecuta en cada frame
+    position.x += 100 * delta  # Mueve el objeto a la derecha</code></pre>
+                </div>
+            </div> -->
+                <div class="controls">
+                    <button class="home-btn" onclick="showSlide('index')"><i class="fas fa-home"></i></button>
+                    <button class="prev-btn" onclick="prevSlide()"><i class="fas fa-arrow-left"></i></button>
+                    <button class="next-btn" onclick="nextSlide()"><i class="fas fa-arrow-right"></i></button>
+                </div>
+        </section>
+
+        <section id="slide3" class="slide">
+            <div class="slide-content">
+                <h1>Demo: Obtener un Demo 📦</h1>
+                <div class="slide-main">
+                    <div class="slide-text">
+                        <h2>Paso 1: Acceder a la Asset Library</h2>
+                        <ol>
+                            <li>Abrir Godot Engine 🎮</li>
+                            <li>Crear un nuevo proyecto o abrir uno existente</li>
+                            <li>Ir a la pestaña <strong>AssetLib</strong> en la parte superior</li>
+                            <li>Esta biblioteca contiene recursos gratuitos y comerciales</li>
+                        </ol>
+
+                        <h2>Paso 2: Buscar el Demo 🔍</h2>
+                        <ol>
+                            <li>En el buscador, escribir "shooter"</li>
+
+                            <li>Revisar las opciones disponibles</li>
+                            <li>Seleccionar el Demo "Platform Shooter" que incluye:</li>
+                            <ul>
+                                <li>Sistema de movimiento de plataformas</li>
+                                <li>Mecánica de disparo</li>
+                                <li>Gestión de vida</li>
+                            </ul>
+                        </ol>
+
+                        <h2>Paso 3: Descargar e Instalar ⬇️</h2>
+                        <ol>
+                            <li>Hacer clic en Descargar</li>
+                            <li>Seguir el asistente de instalación</li>
+                            <li>Abrir el proyecto para explorar el Demo</li>
+                        </ol>
+                    </div>
+                    <div class="slide-image">
+                        <img src="images/open_demo.gif" alt="Asset Library de Godot">
+                    </div>
+                </div>
+            </div>
+            <div class="controls">
+                <button class="home-btn" onclick="showSlide('index')"><i class="fas fa-home"></i></button>
+                <button class="prev-btn" onclick="prevSlide()"><i class="fas fa-arrow-left"></i></button>
+                <button class="next-btn" onclick="nextSlide()"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="slide4" class="slide">
+            <div class="slide-content">
+                <h1>Demo: Estructura del Proyecto 📂</h1>
+                <div class="slide-main">
+                    <div class="slide-text">
+                        <h2>Organización del Proyecto</h2>
+                        <p>Cuando abrimos el Demo, veremos una estructura de archivos similar a esta:</p>
+                        <h2>Inspección de Componentes 🔍</h2>
+                        <p>Para nuestra tarea debemos identificar:</p>
+                        <ul>
+                            <li>El script que gestiona la vida del personaje</li>
+                            <li>El script del sistema de disparos</li>
+                            <li>La interfaz de usuario que muestra esta información</li>
+                        </ul>
+                    </div>
+                    <div class="slide-image">
+                        <img src="images/demo_running.gif"
+                            alt="Interfaz de editor de Godot">
+                    </div>
+                </div>
+            </div>
+            <div class="controls">
+                <button class="home-btn" onclick="showSlide('index')"><i class="fas fa-home"></i></button>
+                <button class="prev-btn" onclick="prevSlide()"><i class="fas fa-arrow-left"></i></button>
+                <button class="next-btn" onclick="nextSlide()"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="slide5" class="slide">
+            <div class="slide-content">
+                <h1>Demo: Modificar la Vida del Personaje ❤️</h1>
+                <div class="slide-main">
+                    <div class="slide-text">
+                        <h2>Paso 1: Localizar el Script del Personaje</h2>
+                        <ol>
+                            <li>Abrir la escena del jugador (player.tscn)</li>
+                            <li>Identificar el script asociado (normalmente player.gd)</li>
+                            <li>Abrir el script para editar</li>
+                        </ol>
+
+                        <h2>Paso 2: Encontrar la Variable de Salud</h2>
+                        <p>Buscamos en el código la variable que almacena la vida:</p>
+                        <ul>
+                            <li>Generalmente llamada <code>health</code>, <code>hp</code> o <code>life</code></li>
+                            <li>Suele estar cerca del inicio del script</li>
+                            <li>Puede estar junto a otras estadísticas del personaje</li>
+                        </ul>
+                    </div>
+                    <div class="slide-image">
+                        <img src="images/edit_health_n_bullets.gif"
+                            alt="Editor de código de Godot">
+                    </div>
+                </div>
+            </div>
+            <div class="controls">
+                <button class="home-btn" onclick="showSlide('index')"><i class="fas fa-home"></i></button>
+                <button class="prev-btn" onclick="prevSlide()"><i class="fas fa-arrow-left"></i></button>
+                <button class="next-btn" onclick="nextSlide()"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="slide6" class="slide">
+            <div class="slide-content">
+                <h1>Demo: Sistema de Disparos 🔫</h1>
+                <div class="slide-main">
+                    <div class="slide-text">
+                        <h2>Paso 1: Localizar el Sistema de Armas</h2>
+                        <ol>
+                            <li>Buscar el script relacionado con las armas</li>
+                            <li>Normalmente weapon_system.gd o similar</li>
+                            <li>Puede estar en un nodo hijo del personaje</li>
+                        </ol>
+
+                        <h2>Paso 2: Identificar las Variables de Munición</h2>
+                        <p>En este script encontraremos:</p>
+                        <ul>
+                            <li>Variables para la cantidad máxima de balas</li>
+                            <li>Munición actual</li>
+                            <li>Tiempo de recarga</li>
+                            <li>Funciones para disparar y recargar</li>
+                        </ul>
+                    </div>
+                    <div class="slide-image">
+                        <img src="https://godotengine.org/assets/press/screenshots/3.5_2d_shooter_tutorial.webp"
+                            alt="Sistema de disparo en Godot">
+                    </div>
+                </div>
+                <div class="code-box">
+                    <h3>Modificando el sistema de disparos:</h3>
+                    <pre><code>extends Node2D
+
+# Variables originales
+var max_ammo = 10
+var current_ammo = 10
+var reload_time = 1.0
+
+# Modificamos para tener más munición 🎯
+var max_ammo = 20    # Duplicamos la munición máxima ✅
+var current_ammo = 20  # Iniciamos con el máximo ✅
+var reload_time = 0.8  # Recarga más rápida ✅
+
+func shoot():
+    if current_ammo > 0:
+        current_ammo -= 1
+        
+        # Crea una instancia de la bala
+        var bullet = preload("res://Scenes/Bullet.tscn").instance()
+        bullet.position = $BulletSpawn.global_position
+        bullet.rotation = global_rotation
+        get_tree().current_scene.add_child(bullet)
+        
+        # Efecto de sonido
+        $ShootSound.play()
+    else:
+        reload()
+
+func reload():
+    $ReloadTimer.start(reload_time)
+    yield($ReloadTimer, "timeout")
+    current_ammo = max_ammo</code></pre>
+                </div>
+            </div>
+            <div class="controls">
+                <button class="home-btn" onclick="showSlide('index')"><i class="fas fa-home"></i></button>
+                <button class="prev-btn" onclick="prevSlide()"><i class="fas fa-arrow-left"></i></button>
+                <button class="next-btn" onclick="nextSlide()"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="slide7" class="slide">
+            <div class="slide-content">
+                <h1>Demo: Interfaz de Usuario 📊</h1>
+                <div class="slide-main">
+                    <div class="slide-text">
+                        <h2>Paso 1: Encontrar el Script de la UI</h2>
+                        <ol>
+                            <li>Buscar en el proyecto el script de interfaz de usuario</li>
+                            <li>Normalmente se llamará user_interface.gd, hud.gd o ui.gd</li>
+                            <li>Suele estar vinculado a una escena CanvasLayer</li>
+                        </ol>
+
+                        <h2>Paso 2: Actualizar la Visualización</h2>
+                        <p>Es importante asegurar que la UI muestre correctamente:</p>
+                        <ul>
+                            <li>Los nuevos 5 puntos de vida (en lugar de 3)</li>
+                            <li>La capacidad de 20 balas (en lugar de 10)</li>
+                            <li>La munición actual actualizada</li>
+                        </ul>
+
+                        <p>No es necesario modificar el valor en la UI si ésta ya obtiene el valor dinámicamente desde
+                            las variables del jugador.</p>
+                    </div>
+                    <div class="slide-image">
+                        <img src="https://docs.godotengine.org/en/stable/_images/ui_gui_design.png"
+                            alt="Interfaz de usuario en Godot">
+                    </div>
+                </div>
+                <div class="code-box">
+                    <h3>Código de la interfaz de usuario:</h3>
+                    <pre><code>extends CanvasLayer
+
+func _process(_delta):
+    # Actualizar contador de vida
+    $HealthLabel.text = "Vida: " + str(get_parent().get_node("Player").health)
+    
+    # Actualizar contador de munición
+    var weapon = get_parent().get_node("Player/Weapon")
+    $AmmoLabel.text = "Munición: " + str(weapon.current_ammo) + "/" + str(weapon.max_ammo)</code></pre>
+                </div>
+            </div>
+            <div class="controls">
+                <button class="home-btn" onclick="showSlide('index')"><i class="fas fa-home"></i></button>
+                <button class="prev-btn" onclick="prevSlide()"><i class="fas fa-arrow-left"></i></button>
+                <button class="next-btn" onclick="nextSlide()"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="slide8" class="slide">
+            <div class="slide-content">
+                <h1>Demo: Prueba del Juego 🎮</h1>
+                <div class="slide-main">
+                    <div class="slide-text">
+                        <h2>Paso 1: Ejecutar el Juego</h2>
+                        <ol>
+                            <li>Presionar F5 o el botón de Play ▶️</li>
+                            <li>El juego se iniciará con nuestras modificaciones</li>
+                        </ol>
+
+                        <h2>Paso 2: Comprobar las Modificaciones</h2>
+                        <ul>
+                            <li>✅ Verificar que la vida del personaje muestra 5 puntos</li>
+                            <li>✅ Comprobar que podemos disparar hasta 20 balas</li>
+                            <li>✅ Confirmar que la recarga es más rápida (0.8s)</li>
+                            <li>✅ Testear el juego con las nuevas configuraciones</li>
+                        </ul>
+
+                        <h2>Paso 3: Ajustes Adicionales</h2>
+                        <p>Si es necesario, realizar ajustes para equilibrar el juego:</p>
+                        <ul>
+                            <li>Dificultad de enemigos</li>
+                            <li>Potencia de las armas</li>
+                            <li>Velocidad del personaje</li>
+                        </ul>
+                    </div>
+                    <div class="slide-image">
+                        <img src="https://godotengine.org/assets/press/screenshots/editor_3d_2.webp"
+                            alt="Juego ejecutándose en Godot">
+                    </div>
+                </div>
+            </div>
+            <div class="controls">
+                <button class="home-btn" onclick="showSlide('index')"><i class="fas fa-home"></i></button>
+                <button class="prev-btn" onclick="prevSlide()"><i class="fas fa-arrow-left"></i></button>
+                <button class="next-btn" onclick="nextSlide()"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="slide9" class="slide">
+            <div class="slide-content">
+                <h1>Conclusión y Recursos 📚</h1>
+                <div class="slide-main">
+                    <div class="slide-text">
+                        <h2>Lo que hemos visto hoy 🔍</h2>
+                        <ul>
+                            <li>Introducción básica a Godot Engine</li>
+                            <li>Conceptos fundamentales: nodos, escenas y señales</li>
+                            <li>Modificación de parámetros de juego:</li>
+                            <ul>
+                                <li>Aumentar la vida del personaje ❤️</li>
+                                <li>Incrementar munición máxima 🔫</li>
+                                <li>Acelerar tiempo de recarga ⏱️</li>
+                            </ul>
+                            <li>Actualización de la interfaz para reflejar cambios</li>
+                        </ul>
+
+                        <h2>Recursos para seguir aprendiendo 🌱</h2>
+                        <ul>
+                            <li>📖 <a href="https://docs.godotengine.org" target="_blank">Documentación oficial</a></li>
+                            <li>🎥 <a href="https://www.youtube.com/c/GodotEngineOfficial" target="_blank">Canal oficial
+                                    de YouTube</a></li>
+                            <li>🌍 <a href="https://discord.gg/4SWX3BN" target="_blank">Comunidad en español: Godot
+                                    Hispano</a></li>
+                            <li>👨‍🏫 Tutoriales recomendados:</li>
+                            <ul>
+                                <li>GDQuest</li>
+                                <li>HeartBeast</li>
+                                <li>KidsCanCode</li>
+                            </ul>
+                        </ul>
+                    </div>
+                    <div class="slide-image">
+                        <img src="https://godotengine.org/assets/press/logo_large_color_light.png"
+                            alt="Logo de Godot Engine">
+                        <h2 class="thank-you">¡Gracias por su atención! 👏</h2>
+                        <p>¿Preguntas? 🤔</p>
+                    </div>
+                </div>
+            </div>
+            <div class="controls">
+                <button class="home-btn" onclick="showSlide('index')"><i class="fas fa-home"></i></button>
+                <button class="prev-btn" onclick="prevSlide()"><i class="fas fa-arrow-left"></i></button>
+                <button class="next-btn" onclick="nextSlide()"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
