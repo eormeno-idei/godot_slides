@@ -17,8 +17,14 @@ const slideStructure = [
 
 // Función para encontrar la posición actual en la estructura
 function getCurrentSlideIndex() {
-    const currentId = currentSlide === 0 ? 'index' : `slide${currentSlide}`;
-    return slideStructure.findIndex(item => item.id === currentId);
+    // Busca el slide actual por ID directo ya que podemos tener IDs especiales como "slide3.1"
+    const activeSlide = document.querySelector('.slide.active');
+    if (!activeSlide) {
+        return 0; // Si no hay slide activo, asumimos que es el índice
+    }
+    
+    const activeSlideId = activeSlide.id;
+    return slideStructure.findIndex(item => item.id === activeSlideId);
 }
 
 // Código para suprimir el mensaje de advertencia sobre cookies
@@ -77,19 +83,6 @@ function updateNavigationButtons(currentId) {
     prevButtons.forEach(btn => {
         btn.style.display = slideInfo.prev ? 'block' : 'none';
     });
-}
-
-// If showSlide isn't defined elsewhere, define it here
-if (typeof window.showSlide !== 'function') {
-    window.showSlide = function (slideId) {
-        // Hide all slides
-        document.querySelectorAll('.slide, #index').forEach(slide => {
-            slide.classList.remove('active');
-        });
-
-        // Show the requested slide
-        document.getElementById(slideId).classList.add('active');
-    };
 }
 
 // Función para navegar al slide anterior
@@ -231,28 +224,3 @@ function initSlideStructure() {
         }
     });
 }
-
-// Add this to your existing showSlide function to handle dynamic content
-// This ensures images in newly displayed slides also have click handlers
-window.showSlide = function (slideId) {
-    // Oculta todos los slides y el índice
-    document.querySelectorAll('#presentation > section').forEach(section => {
-        section.classList.remove('active');
-    });
-
-    // Muestra el slide o índice solicitado
-    document.getElementById(slideId).classList.add('active');
-
-    // Actualiza el índice actual si es un slide
-    if (slideId !== 'index') {
-        // Extrae el número del slide del id (por ejemplo, 'slide1' -> 1)
-        currentSlide = parseInt(slideId.replace('slide', ''));
-    } else {
-        currentSlide = 0; // Para el índice
-    }
-
-    // Actualiza botones de navegación basados en la estructura
-    updateNavigationButtons(slideId);
-
-    initImageClickHandlers();
-};
