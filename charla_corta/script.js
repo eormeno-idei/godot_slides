@@ -4,6 +4,22 @@ const index = document.getElementById('index');
 let currentSlide = 0;
 const totalSlides = slides.length;
 
+// Estructura de navegación de slides
+const slideStructure = [
+    { id: 'index', prev: null, next: 'slide1' },
+    { id: 'slide1', prev: 'index', next: 'slide2' },
+    { id: 'slide2', prev: 'slide1', next: 'slide3' },
+    { id: 'slide3', prev: 'slide2', next: 'slide4' },
+    { id: 'slide4', prev: 'slide3', next: 'slide5' },
+    { id: 'slide5', prev: 'slide4', next: 'slide7' }, // Nota: Se salta slide6 según el índice actual
+    { id: 'slide7', prev: 'slide5', next: null }];
+
+// Función para encontrar la posición actual en la estructura
+function getCurrentSlideIndex() {
+    const currentId = currentSlide === 0 ? 'index' : `slide${currentSlide}`;
+    return slideStructure.findIndex(item => item.id === currentId);
+}
+
 // Código para suprimir el mensaje de advertencia sobre cookies
 (function suppressCookieWarnings() {
     const originalConsoleWarn = console.warn;
@@ -31,8 +47,35 @@ function showSlide(id) {
     if (id !== 'index') {
         // Extrae el número del slide del id (por ejemplo, 'slide1' -> 1)
         currentSlide = parseInt(id.replace('slide', ''));
+    } else {
+        currentSlide = 0; // Para el índice
     }
+    
+    // Actualiza botones de navegación basados en la estructura
+    updateNavigationButtons(id);
+    
     initImageClickHandlers();
+}
+
+// Función para actualizar los botones de navegación
+function updateNavigationButtons(currentId) {
+    // Encuentra la posición en la estructura
+    const slideInfo = slideStructure.find(item => item.id === currentId);
+    
+    if (!slideInfo) return; // Si no se encuentra en la estructura
+    
+    // Obtener todos los botones de navegación
+    const nextButtons = document.querySelectorAll('.next-btn');
+    const prevButtons = document.querySelectorAll('.prev-btn');
+    
+    // Actualizar visibilidad de botones según la estructura
+    nextButtons.forEach(btn => {
+        btn.style.display = slideInfo.next ? 'block' : 'none';
+    });
+    
+    prevButtons.forEach(btn => {
+        btn.style.display = slideInfo.prev ? 'block' : 'none';
+    });
 }
 
 // If showSlide isn't defined elsewhere, define it here
@@ -50,21 +93,19 @@ if (typeof window.showSlide !== 'function') {
 
 // Función para navegar al slide anterior
 function prevSlide() {
-    if (currentSlide > 1) {
-        showSlide('slide' + (currentSlide - 1));
-    } else {
-        // Si estamos en el primer slide, volvemos al índice
-        showSlide('index');
+    const currentIndex = getCurrentSlideIndex();
+    if (currentIndex > 0) {
+        const prevSlideId = slideStructure[currentIndex].prev;
+        showSlide(prevSlideId);
     }
 }
 
 // Función para navegar al slide siguiente
 function nextSlide() {
-    if (currentSlide < totalSlides - 1) {
-        showSlide('slide' + (currentSlide + 1));
-    } else {
-        // Si estamos en el último slide, volvemos al índice
-        showSlide('index');
+    const currentIndex = getCurrentSlideIndex();
+    if (currentIndex >= 0 && currentIndex < slideStructure.length - 1) {
+        const nextSlideId = slideStructure[currentIndex].next;
+        showSlide(nextSlideId);
     }
 }
 
@@ -86,11 +127,6 @@ document.addEventListener('keydown', (e) => {
         // Tecla escape o inicio para volver al índice
         showSlide('index');
     }
-});
-
-// Iniciar la presentación mostrando el índice
-document.addEventListener('DOMContentLoaded', () => {
-    showSlide('index');
 });
 
 // Function to initialize image click handlers
@@ -174,31 +210,48 @@ function closeFullscreenImage(overlay) {
 
 // Initialize image handlers when DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
+    // Iniciar la presentación mostrando el índice
+    showSlide('index');
+    
+    // Inicializa los manejadores de imágenes
     initImageClickHandlers();
+    
+    // Inicializa la estructura de navegación
+    initSlideStructure();
 });
 
+// Función para inicializar la estructura de slides
+function initSlideStructure() {
+    // Verifica que todos los slides en la estructura existan en el DOM
+    slideStructure.forEach(item => {
+        const slide = document.getElementById(item.id);
+        if (!slide && item.id !== 'index') {
+            console.warn(`Advertencia: El slide "${item.id}" está en la estructura pero no existe en el DOM`);
+        }
+    });
+}
 
 // Add this to your existing showSlide function to handle dynamic content
 // This ensures images in newly displayed slides also have click handlers
-const originalShowSlide = window.showSlide;
 window.showSlide = function (slideId) {
-    if (typeof originalShowSlide === 'function') {
-        originalShowSlide(slideId);
+    // Oculta todos los slides y el índice
+    document.querySelectorAll('#presentation > section').forEach(section => {
+        section.classList.remove('active');
+    });
+
+    // Muestra el slide o índice solicitado
+    document.getElementById(slideId).classList.add('active');
+
+    // Actualiza el índice actual si es un slide
+    if (slideId !== 'index') {
+        // Extrae el número del slide del id (por ejemplo, 'slide1' -> 1)
+        currentSlide = parseInt(slideId.replace('slide', ''));
     } else {
-        // Hide all slides
-        document.querySelectorAll('#presentation > section').forEach(section => {
-            section.classList.remove('active');
-        });
-
-        // Show the requested slide
-        document.getElementById(slideId).classList.add('active');
-
-        // Update the current slide index if it's a slide
-        if (slideId !== 'index') {
-            // Extract the number from the slide id (e.g. 'slide1' -> 1)
-            currentSlide = parseInt(slideId.replace('slide', ''));
-        }
+        currentSlide = 0; // Para el índice
     }
-
+    
+    // Actualiza botones de navegación basados en la estructura
+    updateNavigationButtons(slideId);
+    
     initImageClickHandlers();
 };
