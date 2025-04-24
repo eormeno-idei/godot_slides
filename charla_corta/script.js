@@ -24,21 +24,13 @@ function showSlide(id) {
         section.classList.remove('active');
     });
 
-    // Convertir los antiguos IDs al nuevo esquema de numeración
-    let adjustedId = id;
-    if (id === 'slide7') {
-        adjustedId = 'slide6';
-    } else if (id === 'slide8') {
-        adjustedId = 'slide7';
-    }
-
     // Muestra el slide o índice solicitado
-    document.getElementById(adjustedId).classList.add('active');
+    document.getElementById(id).classList.add('active');
 
     // Actualiza el índice actual si es un slide
-    if (adjustedId !== 'index') {
+    if (id !== 'index') {
         // Extrae el número del slide del id (por ejemplo, 'slide1' -> 1)
-        currentSlide = parseInt(adjustedId.replace('slide', ''));
+        currentSlide = parseInt(id.replace('slide', ''));
     }
     initImageClickHandlers();
 }

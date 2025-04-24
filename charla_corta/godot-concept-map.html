@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapa Conceptual de Godot Engine</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #263238;
+            margin: 0;
+            padding: 20px;
+            color: #eceff1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #8eef97;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .godot-logo {
+            margin: 0 auto 15px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .godot-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .concept-map {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .central-node {
+            background-color: #478cbf;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            width: 150px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+        }
+        
+        .nodes-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .category {
+            margin: 10px;
+            width: 280px;
+        }
+        
+        .category-node {
+            background-color: #8eef97;
+            color: #263238;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .category-node::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background-color: #8eef97;
+        }
+        
+        .concept-node {
+            background-color: #eceff1;
+            color: #263238;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .concept-node:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .concept-node::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            width: 10px;
+            height: 2px;
+            background-color: #eceff1;
+        }
+        
+        .concept-node .icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+            border-radius: 3px;
+        }
+        
+        .concept-node .node-content {
+            display: flex;
+            align-items: center;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background-color: #37474f;
+            color: #eceff1;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 12px;
+            width: 200px;
+            z-index: 3;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #37474f transparent transparent transparent;
+        }
+        
+        .concept-node:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Para los elementos en la parte superior de la página, mostrar tooltip abajo */
+        .category:nth-child(1) .concept-node:first-child .tooltip,
+        .category:nth-child(2) .concept-node:first-child .tooltip,
+        .category:nth-child(3) .concept-node:first-child .tooltip {
+            bottom: auto;
+            top: 125%;
+        }
+        
+        .category:nth-child(1) .concept-node:first-child .tooltip::after,
+        .category:nth-child(2) .concept-node:first-child .tooltip::after,
+        .category:nth-child(3) .concept-node:first-child .tooltip::after {
+            top: auto;
+            bottom: 100%;
+            border-color: transparent transparent #37474f transparent;
+        }
+        
+        /* Iconos específicos para cada categoría */
+        .icon.fundamentals { background-color: #ff7043; }
+        .icon.nodes { background-color: #42a5f5; }
+        .icon.scripts { background-color: #7e57c2; }
+        .icon.ui { background-color: #26a69a; }
+        .icon.physics { background-color: #ffca28; }
+        .icon.assets { background-color: #ec407a; }
+        
+        /* Líneas de conexión */
+        .connection-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="godot-logo">
+            <img src="images/logo_godot.png" alt="Logo Godot Engine">
+        </div>
+        <h1>Conceptos Fundamentales para Programar en Godot Engine</h1>
+    </div>
+    
+    <div class="concept-map">
+        <div class="central-node">
+            Godot Engine
+        </div>
+        
+        <div class="nodes-container">
+            <div class="category">
+                <div class="category-node">Conceptos Fundamentales</div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon fundamentals">🧩</span>
+                        Escenas y Nodos
+                    </div>
+                    <div class="tooltip">La estructura básica en Godot. Todo es un nodo, y las escenas son árboles de nodos.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon fundamentals">⚙️</span>
+                        Señales (Signals)
+                    </div>
+                    <div class="tooltip">Sistema de eventos que permite la comunicación entre nodos sin dependencias directas.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon fundamentals">🔄</span>
+                        Ciclo de vida
+                    </div>
+                    <div class="tooltip">Funciones como _ready(), _process(), _physics_process() que controlan el ciclo de vida de los nodos.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon fundamentals">🌐</span>
+                        Sistema de coordenadas
+                    </div>
+                    <div class="tooltip">Comprensión de coordenadas 2D/3D, transformaciones locales y globales.</div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-node">Tipos de Nodos</div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon nodes">🔲</span>
+                        Node2D / Node3D
+                    </div>
+                    <div class="tooltip">Nodos base para elementos en espacio 2D o 3D con transformación (posición, rotación, escala).</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon nodes">👾</span>
+                        Sprite2D / Sprite3D
+                    </div>
+                    <div class="tooltip">Para mostrar imágenes o texturas en el juego.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon nodes">📝</span>
+                        RigidBody / CharacterBody
+                    </div>
+                    <div class="tooltip">Nodos con comportamiento físico para objetos dinámicos o personajes controlables.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon nodes">🎮</span>
+                        Control (UI)
+                    </div>
+                    <div class="tooltip">Nodos base para interfaces de usuario con sistemas de layout.</div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-node">Scripting (GDScript)</div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon scripts">📜</span>
+                        Sintaxis básica
+                    </div>
+                    <div class="tooltip">Sintaxis inspirada en Python, con tipado opcional y características propias.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon scripts">🧬</span>
+                        POO en GDScript
+                    </div>
+                    <div class="tooltip">Herencia, composición y extensión de nodos existentes.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon scripts">🎛️</span>
+                        Exportar variables
+                    </div>
+                    <div class="tooltip">Decorador @export para mostrar y configurar variables desde el editor.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon scripts">🔗</span>
+                        Integración con C#/C++
+                    </div>
+                    <div class="tooltip">Alternativas a GDScript y creación de módulos nativos.</div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-node">Interfaces de Usuario</div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon ui">📊</span>
+                        Control y contenedores
+                    </div>
+                    <div class="tooltip">Nodos para organizar elementos de interfaz: HBox, VBox, GridContainer, etc.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon ui">🎨</span>
+                        Temas y estilos
+                    </div>
+                    <div class="tooltip">Personalización visual de la UI con recursos de tema.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon ui">📱</span>
+                        Diseño adaptativo
+                    </div>
+                    <div class="tooltip">Técnicas para interfaces que se adaptan a diferentes resoluciones y dispositivos.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon ui">🖱️</span>
+                        Control de entrada
+                    </div>
+                    <div class="tooltip">Manejo de eventos de teclado, ratón, pantalla táctil y control.</div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-node">Física y Colisiones</div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon physics">⚡</span>
+                        Cuerpos físicos
+                    </div>
+                    <div class="tooltip">RigidBody, StaticBody, CharacterBody para diferentes comportamientos físicos.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon physics">🛡️</span>
+                        Formas de colisión
+                    </div>
+                    <div class="tooltip">CollisionShape y máscaras de colisión para definir interacciones.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon physics">🔍</span>
+                        Raycasting
+                    </div>
+                    <div class="tooltip">Detección de objetos mediante rayos para interacciones precisas.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon physics">🌪️</span>
+                        Áreas y triggers
+                    </div>
+                    <div class="tooltip">Detectar cuando objetos entran o salen de zonas específicas.</div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-node">Gestión de Recursos</div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon assets">🗂️</span>
+                        Sistema de recursos
+                    </div>
+                    <div class="tooltip">Carga y gestión eficiente de texturas, sonidos, escenas y otros recursos.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon assets">🎵</span>
+                        Audio y música
+                    </div>
+                    <div class="tooltip">AudioStreamPlayer y buses de audio para efectos de sonido y música.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon assets">📦</span>
+                        Exportación de juegos
+                    </div>
+                    <div class="tooltip">Proceso de compilación para diferentes plataformas y optimización.</div>
+                </div>
+                <div class="concept-node">
+                    <div class="node-content">
+                        <span class="icon assets">🎞️</span>
+                        Animaciones
+                    </div>
+                    <div class="tooltip">AnimationPlayer y AnimationTree para controlar animaciones y transiciones.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
