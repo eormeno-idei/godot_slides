@@ -21,13 +21,12 @@
                 <ul class="index-list">
                     <li><a href="#" onclick="showSlide('slide1'); return false;">1. Introducción</a></li>
                     <li><a href="#" onclick="showSlide('slide2'); return false;">2. Conceptos Clave en Godot</a></li>
-                    <li><a href="#" onclick="showSlide('slide3'); return false;">3. Demo: Obtener un Demo</a></li>
-                    <li><a href="#" onclick="showSlide('slide4'); return false;">4. Demo: Estructura del Proyecto</a>
+                    <li><a href="#" onclick="showSlide('slide3'); return false;">3. Obtener un Demo</a></li>
+                    <li><a href="#" onclick="showSlide('slide3.1'); return false;">4. Demo: Juego Actual</a></li>
+                    <li><a href="#" onclick="showSlide('slide4'); return false;">5. Demo: Estructura del Proyecto</a>
                     </li>
-                    <li><a href="#" onclick="showSlide('slide5'); return false;">5. Demo: Modificar la Vida del
-                            Personaje</a></li>
-                    <li><a href="#" onclick="showSlide('slide7'); return false;">6. Demo: Prueba del Juego</a></li>
-                    <li><a href="#" onclick="showSlide('slide8'); return false;">7. Conclusión y Recursos</a></li>
+                    <li><a href="#" onclick="showSlide('slide5'); return false;">6. Demo: Modificar la Vida del Personaje</a></li>
+                    <li><a href="#" onclick="showSlide('slide7'); return false;">7. Conclusión y Recursos</a></li>
                 </ul>
             </div>
         </section>
@@ -35,7 +34,7 @@
         <!-- Slides individuales -->
         <section id="slide1" class="slide">
             <div class="slide-content">
-                <h1>¡Bienvenidos a Godot Engine! 🚀</h1>
+                <h1>1. ¡Bienvenidos a Godot Engine! 🚀</h1>
                 <div class="slide-main">
                     <div class="slide-text">
                         <h2>¿Qué es Godot?</h2>
@@ -57,24 +56,28 @@
                         </ul>
                     </div>
                     <div class="slide-image">
-                        <iframe id="youtube-video-" width="1200" height="675" src="https://www.youtube-nocookie.com/embed/Cy4RxlyNvj4?rel=0&modestbranding=1"
+                        <iframe id="youtube-video-" width="1200" height="675"
+                            src="https://www.youtube-nocookie.com/embed/Cy4RxlyNvj4?rel=0&modestbranding=1"
                             title="Video de introducción a Godot Engine" frameborder="0"
                             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen></iframe>
-                        
+
                     </div>
                 </div>
             </div>
             <div class="controls">
-                <button id="home-btn-slide1" name="home-button" class="home-btn" onclick="showSlide('index')" aria-label="Volver al índice"><i class="fas fa-home"></i></button>
-                <button id="prev-btn-slide1" name="prev-button" class="prev-btn" onclick="prevSlide()" aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
-                <button id="next-btn-slide1" name="next-button" class="next-btn" onclick="nextSlide()" aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
+                <button id="home-btn-slide1" name="home-button" class="home-btn" onclick="showSlide('index')"
+                    aria-label="Volver al índice"><i class="fas fa-home"></i></button>
+                <button id="prev-btn-slide1" name="prev-button" class="prev-btn" onclick="prevSlide()"
+                    aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
+                <button id="next-btn-slide1" name="next-button" class="next-btn" onclick="nextSlide()"
+                    aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
             </div>
         </section>
 
         <section id="slide2" class="slide">
             <div class="slide-content">
-                <h1>Conceptos Fundamentales de Godot 🧩</h1>
+                <h1>2. Conceptos Fundamentales de Godot 🧩</h1>
                 <div class="slide-main">
                     <div class="slide-text">
                         <h2>Sistema de Nodos 🌳</h2>
@@ -107,15 +110,18 @@
                 </div>
 
                 <div class="controls">
-                    <button id="home-btn-slide2" name="home-button" class="home-btn" onclick="showSlide('index')" aria-label="Volver al índice"><i class="fas fa-home"></i></button>
-                    <button id="prev-btn-slide2" name="prev-button" class="prev-btn" onclick="prevSlide()" aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
-                    <button id="next-btn-slide2" name="next-button" class="next-btn" onclick="nextSlide()" aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
+                    <button id="home-btn-slide2" name="home-button" class="home-btn" onclick="showSlide('index')"
+                        aria-label="Volver al índice"><i class="fas fa-home"></i></button>
+                    <button id="prev-btn-slide2" name="prev-button" class="prev-btn" onclick="prevSlide()"
+                        aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
+                    <button id="next-btn-slide2" name="next-button" class="next-btn" onclick="nextSlide()"
+                        aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
                 </div>
         </section>
 
         <section id="slide3" class="slide">
             <div class="slide-content">
-                <h1>Demo: Obtener un Demo 📦</h1>
+                <h1>3. Obtener un Demo 📦</h1>
                 <div class="slide-main">
                     <div class="slide-text">
                         <h2>Paso 1: Acceder a la Asset Library</h2>
@@ -152,15 +158,18 @@
                 </div>
             </div>
             <div class="controls">
-                <button id="home-btn-slide3" name="home-button" class="home-btn" onclick="showSlide('index')" aria-label="Volver al índice"><i class="fas fa-home"></i></button>
-                <button id="prev-btn-slide3" name="prev-button" class="prev-btn" onclick="prevSlide()" aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
-                <button id="next-btn-slide3" name="next-button" class="next-btn" onclick="nextSlide()" aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
+                <button id="home-btn-slide3" name="home-button" class="home-btn" onclick="showSlide('index')"
+                    aria-label="Volver al índice"><i class="fas fa-home"></i></button>
+                <button id="prev-btn-slide3" name="prev-button" class="prev-btn" onclick="prevSlide()"
+                    aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
+                <button id="next-btn-slide3" name="next-button" class="next-btn" onclick="nextSlide()"
+                    aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
             </div>
         </section>
 
         <section id="slide4" class="slide">
             <div class="slide-content">
-                <h1>Demo: Estructura del Proyecto 📂</h1>
+                <h1>4. Estructura del Proyecto 📂</h1>
                 <div class="slide-main">
                     <div class="slide-text">
                         <h2>Organización del Proyecto</h2>
@@ -179,15 +188,18 @@
                 </div>
             </div>
             <div class="controls">
-                <button id="home-btn-slide4" name="home-button" class="home-btn" onclick="showSlide('index')" aria-label="Volver al índice"><i class="fas fa-home"></i></button>
-                <button id="prev-btn-slide4" name="prev-button" class="prev-btn" onclick="prevSlide()" aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
-                <button id="next-btn-slide4" name="next-button" class="next-btn" onclick="nextSlide()" aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
+                <button id="home-btn-slide4" name="home-button" class="home-btn" onclick="showSlide('index')"
+                    aria-label="Volver al índice"><i class="fas fa-home"></i></button>
+                <button id="prev-btn-slide4" name="prev-button" class="prev-btn" onclick="prevSlide()"
+                    aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
+                <button id="next-btn-slide4" name="next-button" class="next-btn" onclick="nextSlide()"
+                    aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
             </div>
         </section>
 
         <section id="slide5" class="slide">
             <div class="slide-content">
-                <h1>Demo: Modificar la Vida del Personaje ❤️</h1>
+                <h1>5. Modificar la Vida del Personaje ❤️</h1>
                 <div class="slide-main">
                     <div class="slide-text">
                         <h2>Paso 1: Localizar el Script del Personaje</h2>
@@ -211,15 +223,18 @@
                 </div>
             </div>
             <div class="controls">
-                <button id="home-btn-slide5" name="home-button" class="home-btn" onclick="showSlide('index')" aria-label="Volver al índice"><i class="fas fa-home"></i></button>
-                <button id="prev-btn-slide5" name="prev-button" class="prev-btn" onclick="prevSlide()" aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
-                <button id="next-btn-slide5" name="next-button" class="next-btn" onclick="nextSlide()" aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
+                <button id="home-btn-slide5" name="home-button" class="home-btn" onclick="showSlide('index')"
+                    aria-label="Volver al índice"><i class="fas fa-home"></i></button>
+                <button id="prev-btn-slide5" name="prev-button" class="prev-btn" onclick="prevSlide()"
+                    aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
+                <button id="next-btn-slide5" name="next-button" class="next-btn" onclick="nextSlide()"
+                    aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
             </div>
         </section>
 
         <section id="slide6" class="slide">
             <div class="slide-content">
-                <h1>Demo: Prueba del Juego 🎮</h1>
+                <h1>6. Prueba del Juego 🎮</h1>
                 <div class="slide-main">
                     <div class="slide-text">
                         <h2>Paso 1: Ejecutar el Juego</h2>
@@ -247,15 +262,18 @@
                 </div>
             </div>
             <div class="controls">
-                <button id="home-btn-slide6" name="home-button" class="home-btn" onclick="showSlide('index')" aria-label="Volver al índice"><i class="fas fa-home"></i></button>
-                <button id="prev-btn-slide6" name="prev-button" class="prev-btn" onclick="prevSlide()" aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
-                <button id="next-btn-slide6" name="next-button" class="next-btn" onclick="nextSlide()" aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
+                <button id="home-btn-slide6" name="home-button" class="home-btn" onclick="showSlide('index')"
+                    aria-label="Volver al índice"><i class="fas fa-home"></i></button>
+                <button id="prev-btn-slide6" name="prev-button" class="prev-btn" onclick="prevSlide()"
+                    aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
+                <button id="next-btn-slide6" name="next-button" class="next-btn" onclick="nextSlide()"
+                    aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
             </div>
         </section>
 
         <section id="slide7" class="slide">
             <div class="slide-content">
-                <h1>Conclusión y Recursos 📚</h1>
+                <h1>7. Conclusión y Recursos 📚</h1>
                 <div class="slide-main">
                     <div class="slide-text">
                         <h2>Lo que hemos visto hoy 🔍</h2>
@@ -273,6 +291,7 @@
 
                         <h2>Recursos para seguir aprendiendo 🌱</h2>
                         <ul>
+                            <li>🗺️ <a href="godot-concept-map.html" target="_blank">Mapa Conceptual de Godot</a></li>
                             <li>📖 <a href="https://docs.godotengine.org" target="_blank">Documentación oficial</a></li>
                             <li>🎥 <a href="https://www.youtube.com/c/GodotEngineOfficial" target="_blank">Canal oficial
                                     de YouTube</a></li>
@@ -287,67 +306,37 @@
                         </ul>
                     </div>
                     <div class="slide-image">
-                        <img src="images/logo_large_color_light.png"
-                            alt="Logo de Godot Engine">
+                        <img src="images/logo_large_color_light.png" alt="Logo de Godot Engine">
                         <h2 class="thank-you">¡Gracias por su atención! 👏</h2>
                         <p>¿Preguntas? 🤔</p>
                     </div>
                 </div>
             </div>
             <div class="controls">
-                <button id="home-btn-slide7" name="home-button" class="home-btn" onclick="showSlide('index')" aria-label="Volver al índice"><i class="fas fa-home"></i></button>
-                <button id="prev-btn-slide7" name="prev-button" class="prev-btn" onclick="prevSlide()" aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
-                <button id="next-btn-slide7" name="next-button" class="next-btn" onclick="nextSlide()" aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
+                <button id="home-btn-slide7" name="home-button" class="home-btn" onclick="showSlide('index')"
+                    aria-label="Volver al índice"><i class="fas fa-home"></i></button>
+                <button id="prev-btn-slide7" name="prev-button" class="prev-btn" onclick="prevSlide()"
+                    aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
+                <button id="next-btn-slide7" name="next-button" class="next-btn" onclick="nextSlide()"
+                    aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
             </div>
         </section>
 
-        <!-- <section id="slide8" class="slide">
+        <section id="slide3.1" class="slide">
             <div class="slide-content">
-                <h1>Conclusión y Recursos 📚</h1>
-                <div class="slide-main">
-                    <div class="slide-text">
-                        <h2>Lo que hemos visto hoy 🔍</h2>
-                        <ul>
-                            <li>Introducción básica a Godot Engine</li>
-                            <li>Conceptos fundamentales: nodos, escenas y señales</li>
-                            <li>Modificación de parámetros de juego:</li>
-                            <ul>
-                                <li>Aumentar la vida del personaje ❤️</li>
-                                <li>Incrementar munición máxima 🔫</li>
-                                <li>Acelerar tiempo de recarga ⏱️</li>
-                            </ul>
-                            <li>Actualización de la interfaz para reflejar cambios</li>
-                        </ul>
-
-                        <h2>Recursos para seguir aprendiendo 🌱</h2>
-                        <ul>
-                            <li>📖 <a href="https://docs.godotengine.org" target="_blank">Documentación oficial</a></li>
-                            <li>🎥 <a href="https://www.youtube.com/c/GodotEngineOfficial" target="_blank">Canal oficial
-                                    de YouTube</a></li>
-                            <li>🌍 <a href="https://discord.gg/4SWX3BN" target="_blank">Comunidad en español: Godot
-                                    Hispano</a></li>
-                            <li>👨‍🏫 Tutoriales recomendados:</li>
-                            <ul>
-                                <li>GDQuest</li>
-                                <li>HeartBeast</li>
-                                <li>KidsCanCode</li>
-                            </ul>
-                        </ul>
-                    </div>
-                    <div class="slide-image">
-                        <img src="images/logo_large_color_light.png"
-                            alt="Logo de Godot Engine">
-                        <h2 class="thank-you">¡Gracias por su atención! 👏</h2>
-                        <p>¿Preguntas? 🤔</p>
-                    </div>
-                </div>
+                <h1>4. Juego actual</h1>
             </div>
             <div class="controls">
-                <button id="home-btn-slide8" name="home-button" class="home-btn" onclick="showSlide('index')" aria-label="Volver al índice"><i class="fas fa-home"></i></button>
-                <button id="prev-btn-slide8" name="prev-button" class="prev-btn" onclick="prevSlide()" aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
-                <button id="next-btn-slide8" name="next-button" class="next-btn" onclick="nextSlide()" aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
+                <button id="home-btn-slide7" name="home-button" class="home-btn" onclick="showSlide('index')"
+                    aria-label="Volver al índice"><i class="fas fa-home"></i></button>
+                <button id="prev-btn-slide7" name="prev-button" class="prev-btn" onclick="prevSlide()"
+                    aria-label="Diapositiva anterior"><i class="fas fa-arrow-left"></i></button>
+                <button id="next-btn-slide7" name="next-button" class="next-btn" onclick="nextSlide()"
+                    aria-label="Siguiente diapositiva"><i class="fas fa-arrow-right"></i></button>
             </div>
-        </section> -->
+        </section>
+
+
     </div>
 
     <script src="script.js"></script>

@@ -9,9 +9,10 @@ const slideStructure = [
     { id: 'index', prev: null, next: 'slide1' },
     { id: 'slide1', prev: 'index', next: 'slide2' },
     { id: 'slide2', prev: 'slide1', next: 'slide3' },
-    { id: 'slide3', prev: 'slide2', next: 'slide4' },
-    { id: 'slide4', prev: 'slide3', next: 'slide5' },
-    { id: 'slide5', prev: 'slide4', next: 'slide7' }, // Nota: Se salta slide6 según el índice actual
+    { id: 'slide3', prev: 'slide2', next: 'slide3.1' },
+    { id: 'slide3.1', prev: 'slide3', next: 'slide4' },
+    { id: 'slide4', prev: 'slide3.1', next: 'slide5' },
+    { id: 'slide5', prev: 'slide4', next: 'slide7' },
     { id: 'slide7', prev: 'slide5', next: null }];
 
 // Función para encontrar la posición actual en la estructura
@@ -50,10 +51,10 @@ function showSlide(id) {
     } else {
         currentSlide = 0; // Para el índice
     }
-    
+
     // Actualiza botones de navegación basados en la estructura
     updateNavigationButtons(id);
-    
+
     initImageClickHandlers();
 }
 
@@ -61,18 +62,18 @@ function showSlide(id) {
 function updateNavigationButtons(currentId) {
     // Encuentra la posición en la estructura
     const slideInfo = slideStructure.find(item => item.id === currentId);
-    
+
     if (!slideInfo) return; // Si no se encuentra en la estructura
-    
+
     // Obtener todos los botones de navegación
     const nextButtons = document.querySelectorAll('.next-btn');
     const prevButtons = document.querySelectorAll('.prev-btn');
-    
+
     // Actualizar visibilidad de botones según la estructura
     nextButtons.forEach(btn => {
         btn.style.display = slideInfo.next ? 'block' : 'none';
     });
-    
+
     prevButtons.forEach(btn => {
         btn.style.display = slideInfo.prev ? 'block' : 'none';
     });
@@ -212,10 +213,10 @@ function closeFullscreenImage(overlay) {
 document.addEventListener('DOMContentLoaded', function () {
     // Iniciar la presentación mostrando el índice
     showSlide('index');
-    
+
     // Inicializa los manejadores de imágenes
     initImageClickHandlers();
-    
+
     // Inicializa la estructura de navegación
     initSlideStructure();
 });
@@ -249,9 +250,9 @@ window.showSlide = function (slideId) {
     } else {
         currentSlide = 0; // Para el índice
     }
-    
+
     // Actualiza botones de navegación basados en la estructura
     updateNavigationButtons(slideId);
-    
+
     initImageClickHandlers();
 };
