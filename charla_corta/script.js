@@ -13,7 +13,8 @@ const slideStructure = [
     { id: 'slide3.1', prev: 'slide3', next: 'slide4' },
     { id: 'slide4', prev: 'slide3.1', next: 'slide5' },
     { id: 'slide5', prev: 'slide4', next: 'slide7' },
-    { id: 'slide7', prev: 'slide5', next: null }];
+    { id: 'slide6', prev: 'slide5', next: 'slide7' },
+    { id: 'slide7', prev: 'slide6', next: null }];
 
 // Función para encontrar la posición actual en la estructura
 function getCurrentSlideIndex() {
