@@ -41,8 +41,21 @@ function getCurrentSlideIndex() {
     };
 })();
 
+// Función para pausar el video de YouTube
+function pauseYoutubeVideo() {
+    // Buscar el iframe de YouTube
+    const ytFrame = document.getElementById('youtube-godot-intro');
+    if (ytFrame && ytFrame.contentWindow) {
+        // Enviar mensaje para pausar el video usando la YouTube Player API
+        ytFrame.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    }
+}
+
 // Función para mostrar un slide específico
 function showSlide(id) {
+    // Pausar el video de YouTube cuando cambiemos de slide
+    pauseYoutubeVideo();
+
     // Oculta todos los slides y el índice
     document.querySelectorAll('#presentation > section').forEach(section => {
         section.classList.remove('active');
