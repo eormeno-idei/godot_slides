@@ -53,9 +53,8 @@
 }
 
 .institute-logo img {
-    height: 40px;
+    height: 64px;
     width: auto;
-    border-radius: 4px;
 }
 
 .institute-logo span {
@@ -192,8 +191,7 @@ body {
 }
 
 .slide-image img {
-    max-width: 90%;
-    max-height: 400px;
+    max-width: 100%;
     cursor: pointer;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
