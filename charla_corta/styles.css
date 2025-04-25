@@ -206,7 +206,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.slide-image img {
+.slide-image img, .slide-image video {
     max-width: 90%;
     cursor: pointer;
     border-radius: 8px;
@@ -214,7 +214,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.slide-image img:hover {
+.slide-image img:hover, .slide-image video:hover {
     transform: scale(1.03);
 }
 
@@ -357,7 +357,7 @@ a:hover {
     visibility: visible;
 }
 
-.fullscreen-overlay img {
+.fullscreen-overlay img, .fullscreen-overlay video {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;

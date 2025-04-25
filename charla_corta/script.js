@@ -126,8 +126,9 @@ document.addEventListener('keydown', (e) => {
 
 // Function to initialize image click handlers
 function initImageClickHandlers() {
-    // Get all slide images
+    // Get all slide images and videos
     const slideImages = document.querySelectorAll('.slide-image img');
+    const slideVideos = document.querySelectorAll('.slide-image video');
 
     // Add click event to each image
     slideImages.forEach(img => {
@@ -136,11 +137,24 @@ function initImageClickHandlers() {
         // Add click event
         img.addEventListener('click', imageClickHandler);
     });
+
+    // Add click event to each video
+    slideVideos.forEach(video => {
+        // Remove existing click handlers to prevent duplicates
+        video.removeEventListener('click', videoClickHandler);
+        // Add click event
+        video.addEventListener('click', videoClickHandler);
+    });
 }
 
 // Handler function for image clicks
 function imageClickHandler() {
     showFullscreenImage(this.src, this.alt);
+}
+
+// Handler function for video clicks
+function videoClickHandler() {
+    showFullscreenVideo(this.querySelector('source').src);
 }
 
 // Function to create and show fullscreen image
@@ -180,6 +194,67 @@ function showFullscreenImage(src, alt) {
     });
 
     // Also close on overlay click (but not image click)
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) {
+            closeFullscreenImage(overlay);
+        }
+    });
+
+    // Add ESC key handler
+    document.addEventListener('keydown', function escHandler(e) {
+        if (e.key === 'Escape') {
+            closeFullscreenImage(overlay);
+            document.removeEventListener('keydown', escHandler);
+        }
+    });
+}
+
+// Function to create and show fullscreen video
+function showFullscreenVideo(src) {
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'fullscreen-overlay';
+
+    // For videos
+    const fullVideo = document.createElement('video');
+    fullVideo.controls = true;
+    fullVideo.autoplay = true;
+    fullVideo.loop = true;
+    fullVideo.muted = false;
+    fullVideo.style.maxWidth = '90%';
+    fullVideo.style.maxHeight = '90%';
+    
+    const videoSource = document.createElement('source');
+    videoSource.src = src;
+    videoSource.type = 'video/mp4';
+    
+    fullVideo.appendChild(videoSource);
+    overlay.appendChild(fullVideo);
+
+    // Create close button
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'close-btn';
+    closeBtn.innerHTML = '×';
+    // closeBtn.setAttribute('aria-label', 'Close fullscreen video');
+
+    // Add close button to overlay
+    overlay.appendChild(closeBtn);
+
+    // Add overlay to body
+    document.body.appendChild(overlay);
+
+    // Make overlay visible with a small delay for transition effect
+    setTimeout(() => {
+        overlay.classList.add('active');
+    }, 10);
+
+    // Add click event to close button with stopPropagation
+    closeBtn.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent event bubbling
+        closeFullscreenImage(overlay);
+    });
+
+    // Also close on overlay click (but not video click)
     overlay.addEventListener('click', function (e) {
         if (e.target === overlay) {
             closeFullscreenImage(overlay);
